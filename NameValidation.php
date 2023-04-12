@@ -8,23 +8,16 @@
 
         private $data;
         private $errors = [];
-        private static $fields = ['fname', 'lname'];
 
         public function __construct($post_data) {
 
             $this->data = $post_data;
         }
 
-// Validating Form - Whether the fields are correct And Call Functions Which Validate First & Last Name
+// Function to call other functions which will validate the individual fields and throw errors if any.
 
         public function validateForm() {
 
-            foreach(self::$fields as $field) {
-                if (!array_key_exists($field, $this->data)) {
-                    trigger_error("$field is not present in data");
-                    return;
-                }
-            }
             $this->validateFirstName();
             $this->validateLastName();
             return $this->errors;
